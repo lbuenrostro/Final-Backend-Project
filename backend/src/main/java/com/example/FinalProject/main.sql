@@ -1,5 +1,5 @@
 CREATE TABLE adopters (
-    id Serial Unique Primary Key,
+    ID SERIAL PRIMARY KEY,
     adopterName text,
     username text,
     email text,

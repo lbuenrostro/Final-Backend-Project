@@ -14,7 +14,7 @@ public class LoginController {
     @Value("${app.salt}")
     private String salt;
     @CrossOrigin()
-    @PostMapping("/Login")
+    @PostMapping("/Login/")
     public Adopter login(@RequestBody Login isUser) throws SQLException {
         System.out.println(isUser.username);
         String hashedPassword = BCrypt.hashpw(isUser.password, salt);
@@ -26,7 +26,7 @@ public class LoginController {
             char c = alphabet.charAt(random.nextInt(26));
             sessionKey += c;
         }
-        Adopter newAdopter = AdopterRecords.AdopterLogin(isUser.username, isUser.password, sessionKey);
+        Adopter newAdopter = AdopterRecords.AdopterLogin(isUser.username, hashedPassword, sessionKey);
         if (newAdopter != null) {
             return newAdopter;
         } else {

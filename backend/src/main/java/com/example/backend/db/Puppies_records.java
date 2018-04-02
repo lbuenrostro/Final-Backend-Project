@@ -8,7 +8,7 @@ public class Puppies_records {
     private static Connection connect() {
         try {
             return DriverManager.getConnection(
-                    "jdbc:postgresql:Main", "basecamp", "pgpass");
+                    "jdbc:postgresql:puppies", "basecamp", "pgpass");
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -26,8 +26,9 @@ public class Puppies_records {
             ResultSet rs = st.executeQuery();
             ArrayList<puppy_records> allpuppy_records = new ArrayList<puppy_records>();
             while (rs.next()) {
-                String breed = rs.getString("breed");
+//                String breed = rs.getString("breed");
                 allpuppy_records.add(new puppy_records(
+                        rs.getString("breed"),
                         rs.getString("gender"),
                         rs.getString("age"),
                         rs.getInt("price")

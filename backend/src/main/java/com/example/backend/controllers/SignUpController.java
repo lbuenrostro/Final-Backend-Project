@@ -13,11 +13,10 @@ import java.util.Random;
 public class SignUpController {
     @Value("${app.salt}")
     private String salt;
-
     @CrossOrigin()
-    @PostMapping("/SignUp")
+    @PostMapping("/SignUp/")
     public Adopter signUp(@RequestBody Signup newAdopt) {
-        System.out.println("Username: " + newAdopt.username);
+
         String hashedPassword = BCrypt.hashpw(newAdopt.password, salt);
         String alphabet= "abcdefghijklmnopqrstuvwxyz";
         String sessionKey = "";
@@ -27,8 +26,10 @@ public class SignUpController {
             char c = alphabet.charAt(random.nextInt(26));
             sessionKey +=c;
         }
+//        return AdopterRecords.CreateNewAdopter(newAdopt.username, newAdopt.adopterName,
+//                newAdopt.email, hashedPassword, sessionKey);
         Adopter newAdopter = AdopterRecords.insertAdopter(newAdopt.adopterName, newAdopt.username
-                ,newAdopt.email, newAdopt.password, sessionKey);
+                ,newAdopt.email, hashedPassword, sessionKey);
         if (newAdopter != null) {
             return newAdopter;
         } else {

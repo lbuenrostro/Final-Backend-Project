@@ -3,6 +3,7 @@ package com.example.backend;
 import com.example.backend.core.Adopter;
 import com.example.backend.db.Connect;
 
+import java.awt.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -70,6 +71,28 @@ public class AdopterRecords {
             conn.close();
             return new Adopter(resultSet.getInt("id"), resultSet.getString("adopterName"), resultSet.getString("username"), resultSet.getString("email"),
                     resultSet.getString("password"), resultSet.getString("sessionKey"));
+        }
+
+        public static Adopter CreateNewAdopter(String adopterName, String username, String email, String password, String sessionKey) {
+            try {
+
+                Connection conn = Connect.getDB();
+                PreparedStatement preparedStatement = conn.prepareStatement("INSERT INTO adopters (adopterName, username," +
+                        "email, password, sessionKey) VALUES (?, ?, ?, ?, ?) RETURNING *");
+                preparedStatement.setString(1, adopterName);
+                preparedStatement.setString(2, username);
+                preparedStatement.setString(3, email);
+                preparedStatement.setString(4, password);
+                preparedStatement.setString(5, sessionKey);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                resultSet.next();
+                return new Adopter(resultSet.getInt("id"), resultSet.getString("adopterName"),
+                        resultSet.getString("username"), resultSet.getString("email"),
+                        resultSet.getString("password"), resultSet.getString("sessionKey"));
+            } catch (SQLException e){
+                System.out.println(e.getMessage());
+                return null;
+            }
         }
 
 

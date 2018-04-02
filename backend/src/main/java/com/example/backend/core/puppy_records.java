@@ -8,7 +8,7 @@ public class puppy_records {
 
     public puppy_records() {}
 
-    public puppy_records(String breed, String gender, Integer price) {
+    public puppy_records(String breed, String gender, String age, Integer price) {
         this.breed = breed;
         this.gender = gender;
         this.age = age;
