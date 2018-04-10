@@ -1,38 +1,40 @@
 package com.example.backend;
 
-import com.example.backend.core.Adopter;
 import com.example.backend.db.Connect;
 
-import java.awt.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
+//import com.example.backend.core.Adopter;
 
 
 public class AdopterRecords {
-//    public static ArrayList<Adopter> allAdopters(){
-//        try {
-//            Connection conn = Connect.getDB();
-//            PreparedStatement preparedStatement = conn.prepareStatement(
-//                    "SELECT * FROM adopters");
-//            ResultSet resultSet = preparedStatement.executeQuery();
-//            ArrayList<Adopter> allAdopter = new ArrayList<Adopter>();
-//            while (resultSet.next()){
-//                allAdopter.add(new
-//                        Adopter(resultSet.getInt("id"),
-//                        resultSet.getString("adopterName"),
-//                        resultSet.getString("username"),
-//                        resultSet.getString("email"),
-//                        resultSet.getString("password")));
-//            }
-//            conn.close();
-//            return allAdopter;
-//        }
-//        catch (SQLException e){
-//            return null;
-//        }
-//    }
+    public static ArrayList<Adopter> allAdopters(){
+        try {
+            Connection conn = Connect.getDB();
+            PreparedStatement preparedStatement = conn.prepareStatement(
+                    "SELECT * FROM adopters");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            ArrayList<Adopter> allAdopters = new ArrayList<Adopter>();
+            while (resultSet.next()){
+                allAdopters().add(new
+                        Adopter(resultSet.getInt("id"),
+                        resultSet.getString("adopterName"),
+                        resultSet.getString("username"),
+                        resultSet.getString("email"),
+                        resultSet.getString("password"),
+                        resultSet.getString("sessionKey")));
+            }
+            conn.close();
+            return allAdopters;
+        }
+        catch (SQLException e){
+            return null;
+        }
+    }
 
     public static Adopter insertAdopter(String adopterName, String username, String email, String password, String sessionKey){
         try {
@@ -61,17 +63,29 @@ public class AdopterRecords {
     }
 
     public static Adopter AdopterLogin(String username, String password, String sessionKey) throws SQLException {
+        try {
+            System.out.println("making connection...");
             Connection conn = Connect.getDB();
-            PreparedStatement preparedStatement = conn.prepareStatement("UPDATE adopters SET sessionKey = ? WHERE username = ? and password = ?");
+            System.out.println("preparing statement...");
+            PreparedStatement preparedStatement = conn.prepareStatement("UPDATE adopters SET sessionKey = ? WHERE username = ? AND password = ? RETURNING *");
+            System.out.println(password);
             preparedStatement.setString(1, sessionKey);
             preparedStatement.setString(2, username);
             preparedStatement.setString(3, password);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
             conn.close();
-            return new Adopter(resultSet.getInt("id"), resultSet.getString("adopterName"), resultSet.getString("username"), resultSet.getString("email"),
-                    resultSet.getString("password"), resultSet.getString("sessionKey"));
+            return new Adopter(resultSet.getInt("id"),
+                    resultSet.getString("adopterName"),
+                    username,
+                    resultSet.getString("email"),
+                    resultSet.getString("password"),
+                    resultSet.getString("sessionKey"));
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return null;
         }
+    }
 
         public static Adopter CreateNewAdopter(String adopterName, String username, String email, String password, String sessionKey) {
             try {
@@ -97,30 +111,30 @@ public class AdopterRecords {
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//    public static Adopter isAdopter( String email ,String adopterName, String password){
-//
+//    public static isAdopter(String sessionKey,String username, String password){
 //        try {
 //            Connection conn = Connect.getDB();
 //            PreparedStatement preparedStatement = conn.prepareStatement(
-//                    "UPDATE members SET email = ? WHERE adopterName = ? and password = ? returning *"
+//                    "UPDATE adopters SET sessionKey = ? WHERE username = ? and password = ? returning *"
 //            );
-//            preparedStatement.setString(1,email);
-//            preparedStatement.setString(2,adopterName);
+//            preparedStatement.setString(1,sessionKey);
+//            preparedStatement.setString(2,username);
 //            preparedStatement.setString(3,password);
 //            ResultSet resultSet = preparedStatement.executeQuery();
 //            resultSet.next();
 //            conn.close();
 //            return new Adopter(resultSet.getInt("id"),
-//                    adopterName,
+//                    resultSet.getString("adopterName"),
 //                    resultSet.getString("username"),
+//                    resultSet.getString("email"),
 //                    password,
-//                    email
+//                    sessionKey
 //            );
 //
 //        }
 //        catch (SQLException e){
+//            System.out.print(e.getMessage());
 //            return null;
-//        }
 //    }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public static boolean deleteAdopter(Integer id){
