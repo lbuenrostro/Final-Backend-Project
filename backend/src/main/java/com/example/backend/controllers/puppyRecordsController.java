@@ -14,12 +14,6 @@ public class puppyRecordsController {
     }
 
     @CrossOrigin
-    @PostMapping("/Sell")
-    public puppy_records Selling(@RequestBody puppy_records newItem){
-        return Puppies_recordsRepository.SellPuppy(newItem.id, newItem.puppy_img_url,  newItem.breed,  newItem.gender, newItem.age, newItem.price);
-    }
-
-    @CrossOrigin
     @PostMapping("/Buy/{id}")
     public Boolean buying(@PathVariable Integer id){
         System.out.println(id);
