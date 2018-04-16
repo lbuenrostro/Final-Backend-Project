@@ -1,3 +1,4 @@
+//package com.example.backend.core;
 package com.example.backend.core;
 
 public class Adopter {

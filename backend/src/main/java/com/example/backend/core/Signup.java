@@ -1,4 +1,4 @@
-package com.example.backend;
+package com.example.backend.core;
 
 public class Signup {
     public String adopterName;

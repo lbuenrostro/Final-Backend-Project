@@ -1,8 +1,8 @@
 package com.example.backend.controllers;
 
-import com.example.backend.Signup;
+import com.example.backend.core.Signup;
 import com.example.backend.core.Adopter;
-import com.example.backend.AdopterRecords;
+import com.example.backend.db.AdopterRecords;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.mindrot.jbcrypt.BCrypt;
@@ -26,14 +26,12 @@ public class SignUpController {
             char c = alphabet.charAt(random.nextInt(26));
             sessionKey +=c;
         }
-//        return AdopterRecords.CreateNewAdopter(newAdopt.username, newAdopt.adopterName,
-//                newAdopt.email, hashedPassword, sessionKey);
         Adopter newAdopter = AdopterRecords.insertAdopter(newAdopt.adopterName, newAdopt.username
                 ,newAdopt.email, hashedPassword, sessionKey);
         if (newAdopter != null) {
             return newAdopter;
         } else {
-            System.out.println("not working!!");
+            System.out.println("Json is incorret!");
             return null;
         }
     }
