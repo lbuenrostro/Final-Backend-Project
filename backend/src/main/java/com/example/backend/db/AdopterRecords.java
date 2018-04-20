@@ -1,7 +1,6 @@
 package com.example.backend.db;
 
 import com.example.backend.core.Adopter;
-import com.example.backend.db.Connect;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -184,13 +183,6 @@ public class AdopterRecords {
             preparedStatement.setString(1, username);
             preparedStatement.executeQuery();
             return true;
-//                    new
-//                    Adopter(resultSet.getInt("id"),
-//                    resultSet.getString("adopterName"),
-//                    resultSet.getString("username"),
-//                    resultSet.getString("email"),
-//                    resultSet.getString("password"),
-//                    resultSet.getString("sessionKey"));
         }
         catch (SQLException e){
             System.out.println(e.getMessage());
