@@ -29,7 +29,7 @@ INSERT INTO puppy_records (puppy_img_url, breed, gender, age, price) VALUES
     ('https://i.pinimg.com/originals/af/6e/b3/af6eb39b2c64e1b51ce433c558eb5fb7.jpg', 'Poodle', 'Female', '2 Months', 900),
     ('https://lh3.googleusercontent.com/6z3pxFoD1jaWQr7fzQsLQzqvjLyW4XY-OWUsxk3xCvQ3CxjTEGY2tea0zWGiyKvB-ajtR2LZZZBDffxmqNKXYd3NPAYHog1gfh4peI9qrYFKAQsuMa1YX3BXJppUG1_vnvpGWWTCckm8BbvboPqthZ3tdQYZKaltOWmwYU5uwAIHfBqYe4oWBd7wfSPJ_4tDqELEagAomy5XA4hhLahd10fHm0lFaxCRvygzs1P_-JlH1R0UjUhn8LPeRqbp-u7Lz7Ytog5j2l0Or7zAo81yPooPaRATPOWToE6LmQFpZdZHR06f5jINcfyd6GrQC1WYLfTo114Y0oa39mc2YFY796n4Pa_y5VxZCmTDO75btYj2tv3el_afSwkEXVG5YsDH80XKclad1DVzf1LecFs_N4lk2CiXMxWSl-r1v1eeAVHSJ5BSb2mWrVLIJbbBP_h3cY3xlnWMrHKG48gnwruyweKEcwtU2SND546JyzuZ6-UXF4vLMBVEIZTQuFj2EVf5DwBaFA_69KG8y7YBUEtM5OUdgNgx8bDBLNnl8KvWYUmM7w_IWoGuVVG9qqmQyob2rSCZ1L7eUccXSFK2LZbIvqec3XYBiOfMITQkA_z0xQ8=w800-h500-no', 'Doberman', 'Male', '2 Months', 900),
     ('https://i1.wallbox.ru/wallpapers/main/201317/280b974707a51fe.jpg', 'Dachshund', 'Female', '3 Months', 200),
-    ('https://i.ytimg.com/vi/zoyVpwMc8H4/maxresdefault.jpg', 'Siberian Husky', 'Female', '2 Months', 600),
+    ('https://www.arrowheadscoopers.com/wp-content/uploads/2017/11/puppyy11.jpg', 'Siberian Husky', 'Female', '2 Months', 600),
     ('https://www.puppieshk.com/images/anuncios/050220161454691743_2.jpg', 'Chihuahua', 'Male', '2 Months', 400),
     ('https://www.urbandogcoffee.com/wp-content/uploads/2018/03/boxer-pup-1024x721.jpg', 'Boxer', 'Male', '4 Months', 750),
     ('https://gfp-2a3tnpzj.stackpathdns.com/wp-content/uploads/2016/07/English-Mastiff-Puppies-For-Sale-600x600.jpg', 'English Mastiff', 'Female', '4 Months', 600),
